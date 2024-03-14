@@ -1,1 +1,2 @@
 # Engenharia-de-Software-24-1
+O software desenvolvido tem como objetivo fornecer aos usuários um meio de controlar e organizar suas finanças pessoais a partir de uma interface gráfica amigável. Além de rastrear as suas despesas e estabelecer metas para suas finanças, será possível realizar a previsão e agendamento de gastos. O usuário também poderá categorizar os dados da forma de sua preferência e organizar o seu orçamento mensalmente, com vizualição em forma de calendário.
