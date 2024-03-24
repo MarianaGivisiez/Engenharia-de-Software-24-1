@@ -40,11 +40,11 @@ O software desenvolvido tem como objetivo fornecer aos usuários um meio de cont
 - Tarefas e responsáveis:
 1) Criar aplicação com o PyQT (back) [Mara]
 2) Implementar tela de registro (front) [João] 
-3) Implementar sistema de registro (back) []
+3) Implementar sistema de registro (back) [Mariana]
 
 **História #2:** Como usuário, eu gostaria de logar no sistema
 - Tarefas e responsáveis:
-1) Implementar tela de login do usuário (front) []
+1) Implementar tela de login do usuário (front) [Thiago]
 2) Implementar sistema de login do usuário (back) [João]
 
 **História #3:** Como usuário, eu gostaria de acessar uma interface intuitiva
@@ -53,5 +53,5 @@ O software desenvolvido tem como objetivo fornecer aos usuários um meio de cont
 
 **História #4:** Como usuário, eu gostaria de rastrear as minhas despesas
 - Tarefas e responsáveis
-1) Implementar opção de registro e edição de despesas (front) []
-2) Implementar registro e edição de despesas (back) []
+1) Implementar opção de registro e edição de despesas (front) [Thiago]
+2) Implementar registro e edição de despesas (back) [Mariana]
