@@ -45,23 +45,25 @@ class DataBase():
 
     def insert_user(self, user, password, password_confirm):
         # Método para inserir um novo usuário no banco de dados
+        self.conecta()
         if password == password_confirm:
             try:
                 cursor = self.connection.cursor()
                 # Inserção de um novo usuário na tabela 'users'
                 cursor.execute(""" 
-                               INSERT INTO users( user, password) VALUES(?,?)
-                """, ( user, password))
+                               INSERT INTO users( name, user, password) VALUES(?,?,?)
+                """, ( user, user, password))
                 self.connection.commit()
-                print("Usuário registrado com sucesso!")
+                return True
             except AttributeError:
                 print("faça a conexão")
         else:
-            print("As senhas não coincidem. Tente novamente.")
+            return False
 
     def check_user(self, user, password):
         # Método para verificar se um usuário existe no banco de dados
         try:
+            self.conecta(self)
             cursor = self.connection.cursor()
             cursor.execute("""
                            SELECT * FROM users;
@@ -77,6 +79,7 @@ class DataBase():
         
     def nome_existe(self, name):
         try:
+            self.conecta(self)
             cursor = self.connection.cursor()
             cursor.execute("SELECT * FROM users WHERE name LIKE ?", ('%' + name + '%',))
             results = cursor.fetchall()
