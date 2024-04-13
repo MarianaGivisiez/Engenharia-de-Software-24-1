@@ -1,13 +1,12 @@
-# Importação do módulo sqlite3 para interagir com o banco de dados SQLite
 import sqlite3
+from datetime import datetime
 
-# Definição da classe DataBase para gerenciar o banco de dados
 class DataBase():
     def __init__(self, name='system.db'):
-        # Inicialização da classe com o nome do banco de dados (padrão: 'system.db')
+        # Inicialização da classe com o nome do banco de dados
         self.name = name
 
-    def conecta(self):
+    def connect(self):
         # Método para conectar ao banco de dados
         self.connection = sqlite3.connect(self.name)
 
@@ -19,8 +18,10 @@ class DataBase():
             pass
 
     def create_tables(self):
+        # Método para criar as tabelas necessárias no banco de dados
         try:
             cursor = self.connection.cursor()
+            # Criação da tabela 'users' se não existir
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS users(
                     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -29,12 +30,15 @@ class DataBase():
                     password TEXT NOT NULL
                 );
             """)
+            # Criação da tabela 'expenses' se não existir
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS expenses(
                     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                     user_id INTEGER NOT NULL,
-                    description TEXT NOT NULL,
+                    name TEXT NOT NULL,
+                    date DATE NOT NULL,  -- Usando tipo de dado DATE para armazenar datas
                     amount REAL NOT NULL,
+                    category TEXT NOT NULL,
                     FOREIGN KEY (user_id) REFERENCES users(id)
                 );
             """)
@@ -42,28 +46,24 @@ class DataBase():
         except AttributeError:
             print("Faça a conexão")
 
-
     def insert_user(self, user, password, password_confirm):
         # Método para inserir um novo usuário no banco de dados
-        self.conecta()
         if password == password_confirm:
             try:
                 cursor = self.connection.cursor()
-                # Inserção de um novo usuário na tabela 'users'
                 cursor.execute(""" 
-                               INSERT INTO users( name, user, password) VALUES(?,?,?)
-                """, ( user, user, password))
+                               INSERT INTO users(user, password) VALUES(?,?)
+                """, (user, password))
                 self.connection.commit()
-                return True
+                print("Usuário registrado com sucesso!")
             except AttributeError:
-                print("faça a conexão")
+                print("Faça a conexão")
         else:
-            return False
+            print("As senhas não coincidem. Tente novamente.")
 
     def check_user(self, user, password):
         # Método para verificar se um usuário existe no banco de dados
         try:
-            self.conecta(self)
             cursor = self.connection.cursor()
             cursor.execute("""
                            SELECT * FROM users;
@@ -76,10 +76,10 @@ class DataBase():
             return "sem acesso"
         except:
             pass
-        
-    def nome_existe(self, name):
+
+    def name_exists(self, name):
+        # Método para verificar se um nome de usuário já existe no banco de dados
         try:
-            self.conecta(self)
             cursor = self.connection.cursor()
             cursor.execute("SELECT * FROM users WHERE name LIKE ?", ('%' + name + '%',))
             results = cursor.fetchall()
@@ -91,7 +91,8 @@ class DataBase():
             print("Faça a conexão")
 
     def fazer_login(self, nome, senha):
-        if self.nome_existe(nome):
+        # Método para fazer login verificando o nome de usuário e senha no banco de dados
+        if self.name_exists(nome):
             try:
                 cursor = self.connection.cursor()
                 cursor.execute("SELECT password FROM users WHERE name LIKE ?", ('%' + nome + '%',))
@@ -105,21 +106,19 @@ class DataBase():
                 print("Faça a conexão")
         else:
             return False
-        
-    
-    def insert_expense(self, user_id, description, amount):
+
+    def insert_expense(self, user_id, name, date, amount, category):
         # Método para inserir uma nova despesa no banco de dados
         try:
             cursor = self.connection.cursor()
-            # Inserção de uma nova despesa na tabela 'expenses'
             cursor.execute(""" 
-                INSERT INTO expenses(user_id, description, amount) VALUES(?,?,?)
-            """, (user_id, description, amount))
+                INSERT INTO expenses(user_id, name, date, amount, category) VALUES(?,?,?,?,?)
+            """, (user_id, name, date, amount, category))
             self.connection.commit()
             print("Despesa registrada com sucesso!")
         except AttributeError:
             print("Faça a conexão")
-    
+
     def get_expenses(self, user_id):
         # Método para recuperar as despesas de um usuário específico
         try:
@@ -129,19 +128,68 @@ class DataBase():
             """, (user_id,))
             return cursor.fetchall()
         except AttributeError:
-            print("Faça a conexão")    
-    
+            print("Faça a conexão")
+
+    def edit_expense_name(self, expense_id, name):
+        # Método para editar o nome de uma despesa no banco de dados
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("""
+                UPDATE expenses
+                SET name = ?
+                WHERE id = ?
+            """, (name, expense_id))
+            self.connection.commit()
+            print("Nome da despesa editado com sucesso!")
+        except AttributeError:
+            print("Faça a conexão")
+
+    def edit_expense_date(self, expense_id, date):
+        # Método para editar a data de uma despesa no banco de dados
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("""
+                UPDATE expenses
+                SET date = ?
+                WHERE id = ?
+            """, (date, expense_id))
+            self.connection.commit()
+            print("Data da despesa editada com sucesso!")
+        except AttributeError:
+            print("Faça a conexão")
+
+    def edit_expense_amount(self, expense_id, amount):
+        # Método para editar o valor de uma despesa no banco de dados
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("""
+                UPDATE expenses
+                SET amount = ?
+                WHERE id = ?
+            """, (amount, expense_id))
+            self.connection.commit()
+            print("Valor da despesa editado com sucesso!")
+        except AttributeError:
+            print("Faça a conexão")
+
+    def edit_expense_category(self, expense_id, category):
+        # Método para editar a categoria de uma despesa no banco de dados
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("""
+                UPDATE expenses
+                SET category = ?
+                WHERE id = ?
+            """, (category, expense_id))
+            self.connection.commit()
+            print("Categoria da despesa editada com sucesso!")
+        except AttributeError:
+            print("Faça a conexão")
+
 # Teste
-# db = DataBase()
-# db.conecta()
-# db.create_tables()  # Criação das tabelas necessárias no banco de dados
-# db.insert_user("Jooo", "password123", "password123")  # Inserção de um novo usuário
-# db.close_connection()  # Fechamento da conexão com o banco de dados
+db = DataBase()
+db.connect()
+db.create_tables()  # Criação das tabelas necessárias no banco de dados
+db.insert_user("Jooo", "password123", "password123")  # Inserção de um novo usuário
+db.close_connection()  # Fechamento da conexão com o banco de dados
 
-# Example usage:
-# Replace 'example.db' with your database name, 'my_table' with your table name,
-# and 'John' with the name you want to search for.
-
-##### result_df = search_name_in_database('example.db', 'my_table', 'John') #####
-
-# Display the search results
