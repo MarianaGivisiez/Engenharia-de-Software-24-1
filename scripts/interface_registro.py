@@ -14,7 +14,7 @@ from database import DataBase
 
 db = DataBase()
 
-db.conecta()
+db.connect()
 db.create_tables()
 
 class Ui_MainWindow(object):
