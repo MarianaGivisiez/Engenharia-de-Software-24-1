@@ -20,6 +20,7 @@ class DataBase():
     def create_tables(self):
         # Método para criar as tabelas necessárias no banco de dados
         try:
+            self.connect()
             cursor = self.connection.cursor()
             # Criação da tabela 'users' se não existir
             cursor.execute("""
@@ -50,10 +51,11 @@ class DataBase():
         # Método para inserir um novo usuário no banco de dados
         if password == password_confirm:
             try:
+                self.connect()
                 cursor = self.connection.cursor()
                 cursor.execute(""" 
-                               INSERT INTO users(user, password) VALUES(?,?)
-                """, (user, password))
+                               INSERT INTO users(user, name, password) VALUES(?,?,?)
+                """, (user, user, password))
                 self.connection.commit()
                 print("Usuário registrado com sucesso!")
             except AttributeError:
