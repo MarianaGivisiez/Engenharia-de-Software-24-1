@@ -51,8 +51,8 @@ class DataBase():
             try:
                 cursor = self.connection.cursor()
                 cursor.execute(""" 
-                               INSERT INTO users(user, password) VALUES(?,?)
-                """, (user, password))
+                               INSERT INTO users(user, name, password) VALUES(?,?,?)
+                """, (user, user, password))
                 self.connection.commit()
                 print("Usuário registrado com sucesso!")
             except AttributeError:

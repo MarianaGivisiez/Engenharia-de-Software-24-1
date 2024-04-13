@@ -21,7 +21,7 @@ class TelaRegistro():
         usuario = self.lineEdit.text()
         senha = self.lineEdit_2.text()
         confirmacao = self.lineEdit_3.text()
-        if(self.db.check_user(usuario,senha)):
+        if(self.db.check_user(usuario,senha) == True):
                 self.label_5.setText("Nome de usuário indisponível")
                 self.label_5.adjustSize()
         else:
@@ -171,14 +171,3 @@ class TelaRegistro():
         self.label_5.setText(_translate("", ""))
         self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "Digite sua senha"))
         self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "Digite novamente a senha"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = TelaRegistro()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
-
