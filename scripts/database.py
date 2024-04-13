@@ -186,10 +186,3 @@ class DataBase():
         except AttributeError:
             print("Faça a conexão")
 
-# Teste
-db = DataBase()
-db.connect()
-db.create_tables()  # Criação das tabelas necessárias no banco de dados
-db.insert_user("Jooo", "password123", "password123")  # Inserção de um novo usuário
-db.close_connection()  # Fechamento da conexão com o banco de dados
-
