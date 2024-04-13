@@ -20,13 +20,11 @@ class DataBase():
     def create_tables(self):
         # Método para criar as tabelas necessárias no banco de dados
         try:
-            self.connect()
             cursor = self.connection.cursor()
             # Criação da tabela 'users' se não existir
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS users(
                     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                    name TEXT NOT NULL,
                     user TEXT UNIQUE NOT NULL,
                     password TEXT NOT NULL
                 );
@@ -51,11 +49,10 @@ class DataBase():
         # Método para inserir um novo usuário no banco de dados
         if password == password_confirm:
             try:
-                self.connect()
                 cursor = self.connection.cursor()
                 cursor.execute(""" 
-                               INSERT INTO users(user, name, password) VALUES(?,?,?)
-                """, (user, user, password))
+                               INSERT INTO users(user, password) VALUES(?,?)
+                """, (user, password))
                 self.connection.commit()
                 print("Usuário registrado com sucesso!")
             except AttributeError:
@@ -72,18 +69,18 @@ class DataBase():
                            """)
             for linha in cursor.fetchall():
                 if linha[2].upper() == user.upper() and linha[3] == password:
-                    return "user"
+                    return True
                 else:
                     continue
-            return "sem acesso"
+            return False
         except:
             pass
 
-    def name_exists(self, name):
+    def name_exists(self, user):
         # Método para verificar se um nome de usuário já existe no banco de dados
         try:
             cursor = self.connection.cursor()
-            cursor.execute("SELECT * FROM users WHERE name LIKE ?", ('%' + name + '%',))
+            cursor.execute("SELECT * FROM users WHERE name LIKE ?", ('%' + user + '%',))
             results = cursor.fetchall()
             if len(results) == 0:
                 return False
@@ -92,15 +89,15 @@ class DataBase():
         except AttributeError:
             print("Faça a conexão")
 
-    def fazer_login(self, nome, senha):
+    def fazer_login(self, user, password):
         # Método para fazer login verificando o nome de usuário e senha no banco de dados
-        if self.name_exists(nome):
+        if self.name_exists(user):
             try:
                 cursor = self.connection.cursor()
-                cursor.execute("SELECT password FROM users WHERE name LIKE ?", ('%' + nome + '%',))
+                cursor.execute("SELECT password FROM users WHERE name LIKE ?", ('%' + user + '%',))
                 results = cursor.fetchall()
                 password = results[0][0]
-                if password == senha:
+                if password == password:
                     return True
                 else:
                     return False
@@ -187,4 +184,6 @@ class DataBase():
             print("Categoria da despesa editada com sucesso!")
         except AttributeError:
             print("Faça a conexão")
+
+
 
