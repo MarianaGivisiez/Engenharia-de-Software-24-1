@@ -12,21 +12,20 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from database import DataBase
 
-db = DataBase()
 
-db.connect()
-db.create_tables()
-
-class Ui_MainWindow(object):
+class TelaRegistro():
+    def __init__(self, db):
+        # Armazena a instância do banco de dados
+        self.db = db
     def registrar(self):
         usuario = self.lineEdit.text()
         senha = self.lineEdit_2.text()
         confirmacao = self.lineEdit_3.text()
-        if(db.check_user(usuario,senha)):
+        if(self.db.check_user(usuario,senha)):
                 self.label_5.setText("Nome de usuário indisponível")
                 self.label_5.adjustSize()
         else:
-                if(db.insert_user(usuario,senha,confirmacao) == False):
+                if(self.db.insert_user(usuario,senha,confirmacao) == False):
                         self.label_5.setText("As senhas não coincidem")
                         self.label_5.adjustSize()
 
@@ -173,13 +172,13 @@ class Ui_MainWindow(object):
         self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "Digite sua senha"))
         self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "Digite novamente a senha"))
 
-db.close_connection()
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = TelaRegistro()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
