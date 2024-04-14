@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
-    <height>505</height>
+    <width>524</width>
+    <height>514</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,6 +39,9 @@
       </rect>
      </property>
      <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
       <string> Login</string>
      </property>
     </widget>
@@ -52,6 +55,9 @@
       </rect>
      </property>
      <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
       <string> Password</string>
      </property>
     </widget>
@@ -165,7 +171,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>show</string>
+      <string/>
      </property>
     </widget>
    </widget>
@@ -197,8 +203,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>520</width>
-     <height>26</height>
+     <width>524</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
