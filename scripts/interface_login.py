@@ -12,9 +12,9 @@ class TelaLogin(QMainWindow):
         file_path = os.path.join(base_path, "../interfaces/tela_login.ui")
         uic.loadUi(file_path, self)
 
-        img_path = os.path.join(base_path, "eye.png")
+        img_path = os.path.join(base_path, "../images/eye.png")
         self.iconShow = QtGui.QIcon(img_path)
-        img_path = os.path.join(base_path, "eye_blind.png")
+        img_path = os.path.join(base_path, "../images/eye_blind.png")
         self.iconHide = QtGui.QIcon(img_path)
 
         self.lineEdit_2.setEchoMode(QLineEdit.Password)
