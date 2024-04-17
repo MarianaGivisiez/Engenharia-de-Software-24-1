@@ -9,11 +9,14 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from datetime import datetime
+import os
+import pandas as pd
+import sys
 
-
-class TelaAddDespesa(object):
-    def __init__(index):
+class TelaEditDespesa(object):
+    def __init__(self, index):
         # Lendo o arquivo Excel com Pandas
         base_path = os.path.dirname(__file__)
         file_path = os.path.join(base_path, "dados.xlsx")
@@ -23,10 +26,10 @@ class TelaAddDespesa(object):
             print("Arquivo não encontrado.")
             sys.exit(1)
 
-        self.nome = df.iloc[index]['Nome']
-        self.data = df.iloc[index]['Data']
-        self.data = df.iloc[index]['Valor']
-        self.data = df.iloc[index]['Categoria']
+        self.nome = self.df.iloc[index]['Nome']
+        self.data = self.df.iloc[index]['Data']
+        self.data = self.df.iloc[index]['Valor']
+        self.data = self.df.iloc[index]['Categoria']
 
     def edita_despesa(self):
         # Implemente a função de edita despesa aqui
@@ -122,3 +125,14 @@ class TelaAddDespesa(object):
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionClose.setText(_translate("MainWindow", "Close"))
         
+if __name__ == "__main__":
+    app_principal = QApplication(sys.argv)
+    janela = QMainWindow()
+    
+    tela = TelaEditDespesa(1)
+
+    tela.setupUi(janela)
+
+    janela.show()
+    # db.close_connection()
+    sys.exit(app_principal.exec_())
