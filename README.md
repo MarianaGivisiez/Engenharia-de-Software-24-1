@@ -65,4 +65,8 @@ O software desenvolvido tem como objetivo fornecer aos usuários um meio de cont
 
 ![Diagrama de sequência](https://github.com/MarianaGivisiez/Engenharia-de-Software-24-1/assets/71905731/67f6ca09-4a86-4906-afb3-22b59db4c094)
 
+### Insights Contributors 
+
+![image](https://github.com/MarianaGivisiez/Engenharia-de-Software-24-1/assets/80357554/f4292576-f9d1-40b5-9e64-3fca39fc11ff)
+
 
