@@ -18,8 +18,8 @@ O software desenvolvido tem como objetivo fornecer aos usuários um meio de cont
   - PyQT: Para a interface gráfica e esqueleto da aplicação
   - Pandas: Para manipular dados em planilhas do Excel
   - Matplotlib: Para gerar gráficos
-- Frameworks:
-  - Django: Para autenticação do software
+- Banco de dados:
+  - SQLite
 - APIs:
   - Google Calendar
 
@@ -58,6 +58,11 @@ O software desenvolvido tem como objetivo fornecer aos usuários um meio de cont
 
 ### Diagramas UML:
 - Diagrama de atividades
+
 ![Diagrama de atividades](https://github.com/MarianaGivisiez/Engenharia-de-Software-24-1/assets/71905731/814d577c-3861-4bfb-af14-14ca12f40e17)
+
+- Diagrama de sequência
+
+![Diagrama de sequência](https://github.com/MarianaGivisiez/Engenharia-de-Software-24-1/assets/71905731/67f6ca09-4a86-4906-afb3-22b59db4c094)
 
 
