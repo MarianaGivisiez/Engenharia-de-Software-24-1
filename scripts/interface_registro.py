@@ -24,7 +24,6 @@ class TelaRegistro():
         senha = self.lineEdit_2.text()
         confirmacao = self.lineEdit_3.text()
 
-        print(self.db.check_user_name(usuario))
         if(self.db.check_user_name(usuario) == True):
                 self.label_5.setText("Nome de usuário indisponível")
                 self.label_5.adjustSize()

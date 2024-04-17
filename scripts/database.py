@@ -89,7 +89,6 @@ class DataBase():
                            SELECT * FROM users;
                            """)
             for linha in cursor.fetchall():
-                print(linha[1])
                 if linha[1].upper() == user.upper():
                     return True
                 else:
