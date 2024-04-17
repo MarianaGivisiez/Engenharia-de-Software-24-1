@@ -55,3 +55,8 @@ O software desenvolvido tem como objetivo fornecer aos usuários um meio de cont
 - Tarefas e responsáveis
 1) Implementar opção de registro e edição de despesas (front) [Thiago]
 2) Implementar registro e edição de despesas (back) [Mariana]
+
+### Diagramas UML:
+- Diagrama de atividades
+![Diagrama de atividades](https://github.com/MarianaGivisiez/Engenharia-de-Software-24-1/assets/71905731/b35ecc89-d0cb-4e8e-b12a-1f8526acb5d2)
+
