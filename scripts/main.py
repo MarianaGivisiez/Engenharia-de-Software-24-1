@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import interface_registro
+import interface_login
 from database import DataBase
 
 db = DataBase()
@@ -11,6 +12,8 @@ def main():
     db.connect()
     db.create_tables()
     tela_registro = interface_registro.TelaRegistro(db, janela)
+    tela_login = interface_login.TelaLogin(db)
+
     tela_registro.setupUi(janela)
     # tela_inicial = TelaInicial()
     # tela_inicial.show()

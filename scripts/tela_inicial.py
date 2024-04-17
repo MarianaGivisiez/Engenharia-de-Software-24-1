@@ -14,7 +14,7 @@ class TelaInicial(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        self.setWindowTitle("Excel Viewer")
+        self.setWindowTitle("Gerenciador de Despesas")
         self.setGeometry(100, 100, 800, 600)
 
         # Lendo o arquivo Excel com Pandas

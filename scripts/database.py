@@ -47,19 +47,23 @@ class DataBase():
 
     def insert_user(self, user, password, password_confirm):
         # Método para inserir um novo usuário no banco de dados
-        if password == password_confirm:
-            try:
-                cursor = self.connection.cursor()
-                cursor.execute(""" 
-                               INSERT INTO users(user, password) VALUES(?,?)
-                """, (user, password))
-                self.connection.commit()
-                print("Usuário registrado com sucesso!")
-                return True
-            except AttributeError:
-                print("Faça a conexão")
+        if(user != "" and password != "" and password_confirm != ""):
+            if password == password_confirm:
+                try:
+                    cursor = self.connection.cursor()
+                    cursor.execute(""" 
+                                INSERT INTO users(user, password) VALUES(?,?)
+                    """, (user, password))
+                    self.connection.commit()
+                    print("Usuário registrado com sucesso!")
+                    return True
+                except AttributeError:
+                    print("Faça a conexão")
+            else:
+                print("As senhas não coincidem. Tente novamente.")
+                return False
         else:
-            print("As senhas não coincidem. Tente novamente.")
+            print("Algum campo está vazio!")
             return False
 
     def check_user(self, user, password):

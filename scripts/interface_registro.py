@@ -21,7 +21,6 @@ class TelaRegistro():
 
     def registrar(self):
         usuario = self.lineEdit.text()
-        print(usuario)
         senha = self.lineEdit_2.text()
         confirmacao = self.lineEdit_3.text()
 
@@ -32,14 +31,18 @@ class TelaRegistro():
         else:
                 is_user_inserted = self.db.insert_user(usuario,senha,confirmacao)
                 if(is_user_inserted):
+                        self.label_5.setText("")
+                        self.label_5.adjustSize()
+
                         self.mudar_para_login()
                 else:
                         self.label_5.setText("As senhas não coincidem")
                         self.label_5.adjustSize()
 
     def mudar_para_login(self):
-          tela_login = TelaLogin(self.db)
-          tela_login.setupUi(self.janela)
+          # tela_login = TelaLogin(self.db)
+          # tela_login.setupUi(self.janela)
+          print("Redirecionando para o login!")
                 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
