@@ -11,25 +11,35 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from database import DataBase
-
+from interface_login import TelaLogin
 
 class TelaRegistro():
-    def __init__(self, db):
+    def __init__(self, db, janela):
         # Armazena a instância do banco de dados
         self.db = db
+        self.janela = janela
+
     def registrar(self):
         usuario = self.lineEdit.text()
+        print(usuario)
         senha = self.lineEdit_2.text()
         confirmacao = self.lineEdit_3.text()
-        if(self.db.check_user(usuario,senha) == True):
+
+        print(self.db.check_user_name(usuario))
+        if(self.db.check_user_name(usuario) == True):
                 self.label_5.setText("Nome de usuário indisponível")
                 self.label_5.adjustSize()
         else:
-                if(self.db.insert_user(usuario,senha,confirmacao) == False):
+                is_user_inserted = self.db.insert_user(usuario,senha,confirmacao)
+                if(is_user_inserted):
+                        self.mudar_para_login()
+                else:
                         self.label_5.setText("As senhas não coincidem")
                         self.label_5.adjustSize()
 
-        
+    def mudar_para_login(self):
+          tela_login = TelaLogin(self.db)
+          tela_login.setupUi(self.janela)
                 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -64,7 +74,7 @@ class TelaRegistro():
         self.pushButton_1.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton_1.setObjectName("pushButton_1")
         self.pushButton.clicked.connect(self.registrar) #colocar nome da função
-
+        self.pushButton_1.clicked.connect(self.mudar_para_login)
             
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(210, 100, 211, 31))

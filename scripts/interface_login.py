@@ -20,12 +20,15 @@ class TelaLogin(object):
     def login(self):
         usuario = self.lineEdit.text()
         senha = self.lineEdit_2.text()
-        if(self.db.chec == True):
-            self.label_3.setText("Senha incorreta!")
+        if(self.db.check_user_name(usuario) == False):
+            self.label_3.setText("Usuário não existe!")
             self.label_5.adjustSize()
         else:
-            # Implemente a rotina de realizar login
-            print("Login realizado!")
+            if(self.db.check_user_password(usuario,senha) == True):
+                print("Login realizado!")
+            else:
+                self.label_3.setText("Senha incorreta!")
+                self.label_5.adjustSize()
         
     def cadastro(self):
         # Redireciona para interface de registro

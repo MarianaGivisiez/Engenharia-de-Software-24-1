@@ -55,10 +55,12 @@ class DataBase():
                 """, (user, password))
                 self.connection.commit()
                 print("Usuário registrado com sucesso!")
+                return True
             except AttributeError:
                 print("Faça a conexão")
         else:
             print("As senhas não coincidem. Tente novamente.")
+            return False
 
     def check_user(self, user, password):
         # Método para verificar se um usuário existe no banco de dados
@@ -70,6 +72,41 @@ class DataBase():
             for linha in cursor.fetchall():
                 if linha[2].upper() == user.upper() and linha[3] == password:
                     return True
+                else:
+                    continue
+            return False
+        except:
+            pass
+
+    def check_user_name(self, user):
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("""
+                           SELECT * FROM users;
+                           """)
+            for linha in cursor.fetchall():
+                print(linha[1])
+                if linha[1].upper() == user.upper():
+                    return True
+                else:
+                    continue
+            return False
+        except:
+            pass
+
+    def check_user_password(self, user, password):
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("""
+                           SELECT * FROM users;
+                           """)
+            for linha in cursor.fetchall():
+                print(linha[1])
+                if linha[1].upper() == user.upper():
+                    if linha[2] == password:
+                        return True
+                    else:
+                        return False
                 else:
                     continue
             return False

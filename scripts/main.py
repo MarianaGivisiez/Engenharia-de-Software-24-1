@@ -10,7 +10,7 @@ def main():
     janela = QMainWindow()
     db.connect()
     db.create_tables()
-    tela_registro = interface_registro.TelaRegistro(db)
+    tela_registro = interface_registro.TelaRegistro(db, janela)
     tela_registro.setupUi(janela)
     # tela_inicial = TelaInicial()
     # tela_inicial.show()
