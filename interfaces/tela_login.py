@@ -9,28 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import datetime
-import os
 
-class TelaLogin(object):
-    def __init__(self, db):
-        # Armazena a instância do banco de dados
-        self.db = db
 
-    def login(self):
-        usuario = self.lineEdit.text()
-        senha = self.lineEdit_2.text()
-        if(self.db.chec == True):
-            self.label_3.setText("Senha incorreta!")
-            self.label_5.adjustSize()
-        else:
-            # Implemente a rotina de realizar login
-            print("Login realizado!")
-        
-    def cadastro(self):
-        # Redireciona para interface de registro
-        print("Interface de registro")
-
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(520, 505)
@@ -85,12 +66,6 @@ class TelaLogin(object):
         font.setWeight(75)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
-        self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setEnabled(True)
-        self.label_3.setGeometry(QtCore.QRect(134, 400, 221, 20))
-        self.label_3.setText("")
-        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_3.setObjectName("label_3")
         self.pushButton_3 = QtWidgets.QPushButton(self.widget)
         self.pushButton_3.setGeometry(QtCore.QRect(170, 100, 41, 31))
         self.pushButton_3.setText("")
@@ -102,6 +77,12 @@ class TelaLogin(object):
         font.setPointSize(8)
         self.commandLinkButton.setFont(font)
         self.commandLinkButton.setObjectName("commandLinkButton")
+        self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setEnabled(True)
+        self.label_3.setGeometry(QtCore.QRect(134, 400, 221, 20))
+        self.label_3.setText("")
+        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_3.setObjectName("label_3")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 520, 26))
@@ -119,14 +100,6 @@ class TelaLogin(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-    
-    def toggleVisibility(self):
-        if self.lineEdit_2.echoMode()==self.lineEdit_2.Normal:
-            self.lineEdit_2.setEchoMode(self.lineEdit_2.Password)
-            self.pushButton_3.setIcon(self.iconShow)
-        else:
-            self.lineEdit_2.setEchoMode(self.lineEdit_2.Normal)
-            self.pushButton_3.setIcon(self.iconHide)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -142,14 +115,12 @@ class TelaLogin(object):
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionClose.setText(_translate("MainWindow", "Close"))
 
-        base_path = os.path.dirname(__file__)
-        img_path = os.path.join(base_path, "../images/eye.png")
-        self.iconShow = QtGui.QIcon(img_path)
-        img_path = os.path.join(base_path, "../images/eye_blind.png")
-        self.iconHide = QtGui.QIcon(img_path)
-        self.lineEdit_2.setEchoMode(self.lineEdit_2.Password)
-        self.pushButton_3.setIcon(self.iconShow)
-        self.pushButton_3.clicked.connect(self.toggleVisibility)
 
-        self.pushButton.clicked.connect(self.login)
-        self.pushButton_2.clicked.connect(self.cadastro)
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
