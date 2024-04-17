@@ -58,6 +58,6 @@ O software desenvolvido tem como objetivo fornecer aos usuários um meio de cont
 
 ### Diagramas UML:
 - Diagrama de atividades
-![Diagrama de atividades_resized](https://github.com/MarianaGivisiez/Engenharia-de-Software-24-1/assets/71905731/983ab8bf-a5b6-4be5-9bae-98cd89ac2121)
+![Diagrama de atividades](https://github.com/MarianaGivisiez/Engenharia-de-Software-24-1/assets/71905731/814d577c-3861-4bfb-af14-14ca12f40e17)
 
 
