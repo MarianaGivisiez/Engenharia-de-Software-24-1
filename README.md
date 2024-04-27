@@ -56,6 +56,27 @@ O software desenvolvido tem como objetivo fornecer aos usuários um meio de cont
 1) Implementar opção de registro e edição de despesas (front) [Thiago]
 2) Implementar registro e edição de despesas (back) [Mariana]
 
+### Versão revisada do backlog da sprint
+**História #1:** Como usuário, eu gostaria de me registrar no sistema
+- Tarefas e responsáveis:
+1) Criar arquivo main com PyQT (back) [Mara]
+2) Implementar tela de registro (front) [João] 
+3) Implementar banco de dados (back) [Mariana]
+4) Integrar botões de registro com o banco de dados (back) [Mariana]
+
+**História #2:** Como usuário, eu gostaria de logar no sistema
+- Tarefas e responsáveis:
+1) Implementar tela de login do usuário (front) [Thiago]
+2) Integrar botões de login com o banco de dados (back) [Mariana]
+
+**História #3:** Como usuário, eu gostaria de acessar uma interface intuitiva
+- Tarefas e responsáveis:
+1) Implementar a versão inicial da página principal do sistema (front) [Mara]
+
+**História #4:** Como usuário, eu gostaria de rastrear as minhas despesas
+- Tarefas e responsáveis
+1) Implementar opção de registro e edição de despesas (front) [Thiago]
+
 ### Diagramas UML:
 - Diagrama de atividades
 
